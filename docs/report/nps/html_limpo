@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skeleton Report NPS</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f1f5f9; color: #0f172a;">
+    
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f1f5f9; padding: 30px 0;">
+        <tr>
+            <td align="center">
+                
+                <table width="740" border="0" cellspacing="0" cellpadding="0" style="background-color: #f1f5f9;">
+                    
+                    <tr>
+                        <td style="background-color: #0c1e3f; background-image: linear-gradient(135deg, #0c1e3f 0%, #1e3a8a 100%); padding: 30px 40px; border-radius: 16px;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="50%" valign="middle">
+                                        <img src="https://navega.cloudtotvs.com.br/uxlib/img/login/img/totvs-logo-white.svg" alt="TOTVS" style="height: 28px; vertical-align: middle;">
+                                        <span style="color: #ffffff; font-size: 26px; font-weight: bold; margin-left: 15px; vertical-align: middle;">NPS Cloud Report</span>
+                                    </td>
+                                    <td width="50%" align="right" valign="middle">
+                                        <div style="display: inline-block; background-color: rgba(255,255,255,0.15); padding: 10px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.25); min-width: 100px; height: 20px;">
+                                            </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr><td height="30"></td></tr>
+
+                    <tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="340" height="380" valign="top" style="background-color: #ffffff; border-radius: 20px; padding: 35px; border: 1px solid #e2e8f0;">
+                                        <p style="margin: 0 0 25px 0; color: #64748b; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; text-align: center;">Global Cloud</p>
+                                        <div style="height: 100px;"></div> 
+                                        
+                                        <div style="text-align: center; margin-top: 25px; height: 40px;"></div>
+                                        <div style="text-align: center; margin-top: 20px; height: 35px;"></div>
+                                        
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 35px; border-top: 2px solid #f1f5f9; padding-top: 25px;">
+                                            <tr>
+                                                <td width="33%" align="center"><span style="color: #16a34a; font-size: 11px; font-weight: bold;">PRO</span></td>
+                                                <td width="33%" align="center" style="border-left: 2px solid #f1f5f9; border-right: 2px solid #f1f5f9;"><span style="color: #d97706; font-size: 11px; font-weight: bold;">NEU</span></td>
+                                                <td width="33%" align="center"><span style="color: #dc2626; font-size: 11px; font-weight: bold;">DET</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    
+                                    <td width="20"></td>
+
+                                    <td width="680" valign="top" style="background-color: #ffffff; border-radius: 20px; padding: 35px; border: 1px solid #e2e8f0;">
+                                        <p style="margin: 0; color: #0f172a; font-size: 20px; font-weight: 900;">Desempenho & Evolução</p>
+                                        <div style="height: 250px; margin-top: 50px;">
+                                            </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr><td height="30"></td></tr>
+
+                    <tr>
+                        <td>
+                            <p style="margin: 0 0 25px 0; color: #0f172a; font-size: 24px; font-weight: 900;">Performance por Produto (PaaS)</p>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="333" height="450" style="background-color: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; border-top: 8px solid #a855f7;">
+                                        <div style="padding: 35px 25px; text-align: center;">
+                                            <h3 style="margin: 0 0 20px 0; color: #0f172a; font-size: 22px; font-weight: 900;">PROTHEUS</h3>
+                                            <div style="height: 100px;"></div> <div style="height: 200px; margin-top: 20px;"></div> </div>
+                                    </td>
+                                    <td width="20"></td>
+                                    <td width="333" style="background-color: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; border-top: 8px solid #ec4899;">
+                                        <div style="padding: 35px 25px; text-align: center;">
+                                            <h3 style="margin: 0 0 20px 0; color: #0f172a; font-size: 22px; font-weight: 900;">RM</h3>
+                                            <div style="height: 100px;"></div>
+                                        </div>
+                                    </td>
+                                    <td width="20"></td>
+                                    <td width="333" style="background-color: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; border-top: 8px solid #84cc16;">
+                                        <div style="padding: 35px 25px; text-align: center;">
+                                            <h3 style="margin: 0 0 20px 0; color: #0f172a; font-size: 22px; font-weight: 900;">DATASUL</h3>
+                                            <div style="height: 100px;"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

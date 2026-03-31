@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report NPS Executivo</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f1f5f9; color: #0f172a; -webkit-font-smoothing: antialiased;">
+    
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f1f5f9; padding: 30px 0;">
+        <tr>
+            <td align="center">
+                
+                <table width="740" border="0" cellspacing="0" cellpadding="0" style="background-color: #f1f5f9;">
+                    
+                    <tr>
+                        <td style="background-color: #0c1e3f; background-image: linear-gradient(135deg, #0c1e3f 0%, #1e3a8a 100%); padding: 30px 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(12,30,63,0.15);">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="50%" valign="middle">
+                                        <img src="https://navega.cloudtotvs.com.br/uxlib/img/login/img/totvs-logo-white.svg" alt="TOTVS" style="height: 28px; vertical-align: middle;">
+                                        <span style="color: #ffffff; font-size: 26px; font-weight: bold; margin-left: 15px; vertical-align: middle;">NPS Cloud Report</span>
+                                    </td>
+                                    <td width="50%" align="right" valign="middle">
+                                        <div style="display: inline-block; background-color: rgba(255,255,255,0.15); padding: 10px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.25);">
+                                            <span style="color: #ffffff; font-size: 15px; font-weight: bold; text-transform: uppercase;">{{ $json.ciclo }}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr><td height="30"></td></tr>
+
+                    <tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="340" valign="top" style="background-color: #ffffff; border-radius: 20px; padding: 35px; box-shadow: 0 8px 20px rgba(0,0,0,0.04); border: 1px solid #e2e8f0;">
+                                        <p style="margin: 0 0 25px 0; color: #64748b; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; text-align: center;">Global Cloud</p>
+                                        
+                                        <p style="margin: 0; color: #0c1e3f; font-size: 80px; font-weight: 900; line-height: 1; text-align: center; letter-spacing: -2px;">{{ $json.global.nps_score }}</p>
+                                        
+                                        <div style="text-align: center; margin-top: 25px;">
+                                            <span style="background-color: {{ $json.global.zoneBg }}; color: {{ $json.global.zoneColor }}; padding: 8px 20px; border-radius: 24px; font-size: 12px; font-weight: bold; text-transform: uppercase; border: 1px solid {{ $json.global.zoneColor }};">{{ $json.global.zoneText }}</span>
+                                        </div>
+
+                                        <div style="text-align: center; margin-top: 20px;">
+                                            <span style="background-color: #f8fafc; color: #64748b; padding: 8px 20px; border-radius: 12px; font-size: 13px; font-weight: bold; border: 1px solid #e2e8f0; display: inline-block;">
+                                                Meta: 51 &nbsp;|&nbsp; <span style="color: {{ $json.global.diffColor }};">{{ $json.global.diffText }}</span>
+                                            </span>
+                                        </div>
+                                        
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 35px; border-top: 2px solid #f1f5f9; padding-top: 25px;">
+                                            <tr>
+                                                <td width="33%" align="center">
+                                                    <span style="display: block; color: #16a34a; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-bottom: 5px;">PRO</span>
+                                                    <span style="display: block; color: #15803d; font-size: 26px; font-weight: 900;">{{ $json.global.promotores }}</span>
+                                                </td>
+                                                <td width="33%" align="center" style="border-left: 2px solid #f1f5f9; border-right: 2px solid #f1f5f9;">
+                                                    <span style="display: block; color: #d97706; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-bottom: 5px;">NEU</span>
+                                                    <span style="display: block; color: #b45309; font-size: 26px; font-weight: 900;">{{ $json.global.neutros }}</span>
+                                                </td>
+                                                <td width="33%" align="center">
+                                                    <span style="display: block; color: #dc2626; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-bottom: 5px;">DET</span>
+                                                    <span style="display: block; color: #b91c1c; font-size: 26px; font-weight: 900;">{{ $json.global.detratores }}</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    
+                                    <td width="20"></td>
+
+                                    <td width="680" valign="top" style="background-color: #ffffff; border-radius: 20px; padding: 35px; box-shadow: 0 8px 20px rgba(0,0,0,0.04); border: 1px solid #e2e8f0;">
+                                        
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td width="60%">
+                                                    <p style="margin: 0; color: #0f172a; font-size: 20px; font-weight: 900;">Desempenho & Evolução</p>
+                                                </td>
+                                                <td width="40%" align="right">
+                                                    <span style="background-color: #f1f5f9; color: #475569; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: bold; border: 1px solid #e2e8f0;">Tx. Resposta: {{ $json.global.taxa_resposta }}%</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px; margin-bottom: 30px;">
+                                            <tr>
+                                                <td width="31%" align="center" style="background-color: #ffffff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 20px;">
+                                                    <p style="margin: 0; color: #64748b; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Sorteados</p>
+                                                    <p style="margin: 8px 0 0 0; color: #334155; font-size: 34px; font-weight: 900;">{{ $json.global.tcodes_sorteados }}</p>
+                                                </td>
+                                                <td width="3%" align="center" style="color: #cbd5e1; font-size: 24px; font-weight: bold;">&#10095;</td>
+                                                <td width="32%" align="center" style="background-color: #eff6ff; border: 2px solid #93c5fd; border-radius: 12px; padding: 20px;">
+                                                    <p style="margin: 0; color: #0c1e3f; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Pesquisados</p>
+                                                    <p style="margin: 8px 0 0 0; color: #0c1e3f; font-size: 34px; font-weight: 900;">{{ $json.global.tcodes_pesquisados }}</p>
+                                                </td>
+                                                <td width="3%" align="center" style="color: #cbd5e1; font-size: 24px; font-weight: bold;">&#10095;</td>
+                                                <td width="31%" align="center" style="background-color: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 20px; opacity: 0.8;">
+                                                    <p style="margin: 0; color: #94a3b8; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Pendentes</p>
+                                                    <p style="margin: 8px 0 0 0; color: #94a3b8; font-size: 34px; font-weight: 900;">{{ $json.global.nao_pesquisados }}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <div>
+                                            <img src="{{ $json.chartUrl }}" alt="Gráfico de Evolução" width="600" style="display: block; width: 100%; height: auto; border-radius: 8px;">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr><td height="30"></td></tr>
+
+                    <tr style="{{ $json.hideConsolidadoStyle }}">
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="510" style="background-color: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; border-left: 8px solid #1e293b; padding: 30px; box-shadow: 0 6px 15px rgba(0,0,0,0.03);">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td width="70%">
+                                                    <p style="margin: 0; color: #64748b; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;">Totalizador</p>
+                                                    <p style="margin: 8px 0 0 0; color: #0f172a; font-size: 26px; font-weight: 900;">PAAS</p>
+                                                </td>
+                                                <td width="30%" align="right">
+                                                    <p style="margin: 0; color: #64748b; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Score</p>
+                                                    <p style="margin: 5px 0 0 0; color: #0f172a; font-size: 42px; font-weight: 900; line-height: 1;">{{ $json.paas.nps_score }}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    
+                                    <td width="20"></td> 
+                                    
+                                    <td width="510" style="background-color: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; border-left: 8px solid #0ea5e9; padding: 30px; box-shadow: 0 6px 15px rgba(0,0,0,0.03);">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td width="70%">
+                                                    <p style="margin: 0; color: #64748b; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;">Totalizador</p>
+                                                    <p style="margin: 8px 0 0 0; color: #0f172a; font-size: 26px; font-weight: 900;">IAAS</p>
+                                                </td>
+                                                <td width="30%" align="right">
+                                                    <p style="margin: 0; color: #64748b; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Score</p>
+                                                    <p style="margin: 5px 0 0 0; color: #0f172a; font-size: 42px; font-weight: 900; line-height: 1;">{{ $json.iaas.nps_score }}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr><td height="30"></td></tr>
+
+                    <tr>
+                        <td>
+                            <p style="margin: 0 0 25px 0; color: #0f172a; font-size: 24px; font-weight: 900;">Performance por Produto (PaaS)</p>
+                            
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="333" valign="top" style="background-color: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; border-top: 8px solid #a855f7; box-shadow: 0 6px 15px rgba(0,0,0,0.03);">
+                                        <div style="padding: 35px 25px;">
+                                            <h3 style="margin: 0 0 20px 0; color: #0f172a; font-size: 22px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 1px;">Protheus</h3>
+                                            <p style="margin: 0; color: #0f172a; font-size: 64px; font-weight: 900; text-align: center; line-height: 1; letter-spacing: -2px;">{{ $json.protheus.todos.nps_score }}</p>
+                                            
+                                            <div style="text-align: center; margin: 15px 0 30px 0;">
+                                                <span style="background-color: #f1f5f9; color: #64748b; padding: 6px 16px; border-radius: 12px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">NPS Geral</span>
+                                            </div>
+                                            
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 30px;">
+                                                <tr>
+                                                    <td align="center" style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #16a34a; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">PRO</span>
+                                                        <span style="color: #15803d; font-size: 20px; font-weight: 900;">{{ $json.protheus.todos.promotores }}</span>
+                                                    </td>
+                                                    <td width="6"></td>
+                                                    <td align="center" style="background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #d97706; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">NEU</span>
+                                                        <span style="color: #b45309; font-size: 20px; font-weight: 900;">{{ $json.protheus.todos.neutros }}</span>
+                                                    </td>
+                                                    <td width="6"></td>
+                                                    <td align="center" style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #dc2626; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">DET</span>
+                                                        <span style="color: #b91c1c; font-size: 20px; font-weight: 900;">{{ $json.protheus.todos.detratores }}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 20px;">
+                                                        <span style="color: #64748b; font-size: 12px; font-weight: bold; text-transform: uppercase;">Standard</span>
+                                                        <span style="float: right; color: #0f172a; font-size: 18px; font-weight: 900;">{{ $json.protheus.std.nps_score }}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr><td height="12"></td></tr>
+                                                <tr>
+                                                    <td style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 16px 20px;">
+                                                        <span style="color: #0c1e3f; font-size: 12px; font-weight: bold; text-transform: uppercase;">Prime</span>
+                                                        <span style="float: right; color: #0c1e3f; font-size: 18px; font-weight: 900;">{{ $json.protheus.prime.nps_score }}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+
+                                    <td width="20"></td> <td width="333" valign="top" style="background-color: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; border-top: 8px solid #ec4899; box-shadow: 0 6px 15px rgba(0,0,0,0.03);">
+                                        <div style="padding: 35px 25px;">
+                                            <h3 style="margin: 0 0 20px 0; color: #0f172a; font-size: 22px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 1px;">RM</h3>
+                                            <p style="margin: 0; color: #0f172a; font-size: 64px; font-weight: 900; text-align: center; line-height: 1; letter-spacing: -2px;">{{ $json.rm.todos.nps_score }}</p>
+                                            
+                                            <div style="text-align: center; margin: 15px 0 30px 0;">
+                                                <span style="background-color: #f1f5f9; color: #64748b; padding: 6px 16px; border-radius: 12px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">NPS Geral</span>
+                                            </div>
+                                            
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 30px;">
+                                                <tr>
+                                                    <td align="center" style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #16a34a; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">PRO</span>
+                                                        <span style="color: #15803d; font-size: 20px; font-weight: 900;">{{ $json.rm.todos.promotores }}</span>
+                                                    </td>
+                                                    <td width="6"></td>
+                                                    <td align="center" style="background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #d97706; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">NEU</span>
+                                                        <span style="color: #b45309; font-size: 20px; font-weight: 900;">{{ $json.rm.todos.neutros }}</span>
+                                                    </td>
+                                                    <td width="6"></td>
+                                                    <td align="center" style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #dc2626; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">DET</span>
+                                                        <span style="color: #b91c1c; font-size: 20px; font-weight: 900;">{{ $json.rm.todos.detratores }}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 20px;">
+                                                        <span style="color: #64748b; font-size: 12px; font-weight: bold; text-transform: uppercase;">Standard</span>
+                                                        <span style="float: right; color: #0f172a; font-size: 18px; font-weight: 900;">{{ $json.rm.std.nps_score }}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr><td height="12"></td></tr>
+                                                <tr>
+                                                    <td style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 16px 20px;">
+                                                        <span style="color: #0c1e3f; font-size: 12px; font-weight: bold; text-transform: uppercase;">Prime</span>
+                                                        <span style="float: right; color: #0c1e3f; font-size: 18px; font-weight: 900;">{{ $json.rm.prime.nps_score }}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+
+                                    <td width="20"></td> <td width="333" valign="top" style="background-color: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; border-top: 8px solid #84cc16; box-shadow: 0 6px 15px rgba(0,0,0,0.03);">
+                                        <div style="padding: 35px 25px;">
+                                            <h3 style="margin: 0 0 20px 0; color: #0f172a; font-size: 22px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 1px;">Datasul</h3>
+                                            <p style="margin: 0; color: #0f172a; font-size: 64px; font-weight: 900; text-align: center; line-height: 1; letter-spacing: -2px;">{{ $json.datasul.todos.nps_score }}</p>
+                                            
+                                            <div style="text-align: center; margin: 15px 0 30px 0;">
+                                                <span style="background-color: #f1f5f9; color: #64748b; padding: 6px 16px; border-radius: 12px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">NPS Geral</span>
+                                            </div>
+                                            
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 30px;">
+                                                <tr>
+                                                    <td align="center" style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #16a34a; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">PRO</span>
+                                                        <span style="color: #15803d; font-size: 20px; font-weight: 900;">{{ $json.datasul.todos.promotores }}</span>
+                                                    </td>
+                                                    <td width="6"></td>
+                                                    <td align="center" style="background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #d97706; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">NEU</span>
+                                                        <span style="color: #b45309; font-size: 20px; font-weight: 900;">{{ $json.datasul.todos.neutros }}</span>
+                                                    </td>
+                                                    <td width="6"></td>
+                                                    <td align="center" style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #dc2626; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">DET</span>
+                                                        <span style="color: #b91c1c; font-size: 20px; font-weight: 900;">{{ $json.datasul.todos.detratores }}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 20px;">
+                                                        <span style="color: #64748b; font-size: 12px; font-weight: bold; text-transform: uppercase;">Standard</span>
+                                                        <span style="float: right; color: #0f172a; font-size: 18px; font-weight: 900;">{{ $json.datasul.std.nps_score }}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr><td height="12"></td></tr>
+                                                <tr>
+                                                    <td style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 16px 20px;">
+                                                        <span style="color: #0c1e3f; font-size: 12px; font-weight: bold; text-transform: uppercase;">Prime</span>
+                                                        <span style="float: right; color: #0c1e3f; font-size: 18px; font-weight: 900;">{{ $json.datasul.prime.nps_score }}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr><td height="30"></td></tr>
+
+                    <tr style="{{ $json.hideIaasStyle }}">
+                        <td>
+                            <p style="margin: 0 0 25px 0; color: #0f172a; font-size: 24px; font-weight: 900;">Performance por Produto (IaaS)</p>
+                            
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="333" valign="top" style="background-color: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; border-top: 8px solid #0ea5e9; box-shadow: 0 6px 15px rgba(0,0,0,0.03);">
+                                        <div style="padding: 35px 25px;">
+                                            <h3 style="margin: 0 0 20px 0; color: #0f172a; font-size: 22px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 1px;">IaaS</h3>
+                                            <p style="margin: 0; color: #0f172a; font-size: 64px; font-weight: 900; text-align: center; line-height: 1; letter-spacing: -2px;">{{ $json.iaasProd.todos.nps_score }}</p>
+                                            
+                                            <div style="text-align: center; margin: 15px 0 30px 0;">
+                                                <span style="background-color: #f1f5f9; color: #64748b; padding: 6px 16px; border-radius: 12px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">NPS Geral</span>
+                                            </div>
+                                            
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 30px;">
+                                                <tr>
+                                                    <td align="center" style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #16a34a; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">PRO</span>
+                                                        <span style="color: #15803d; font-size: 20px; font-weight: 900;">{{ $json.iaasProd.todos.promotores }}</span>
+                                                    </td>
+                                                    <td width="6"></td>
+                                                    <td align="center" style="background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #d97706; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">NEU</span>
+                                                        <span style="color: #b45309; font-size: 20px; font-weight: 900;">{{ $json.iaasProd.todos.neutros }}</span>
+                                                    </td>
+                                                    <td width="6"></td>
+                                                    <td align="center" style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 12px 5px;">
+                                                        <span style="color: #dc2626; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">DET</span>
+                                                        <span style="color: #b91c1c; font-size: 20px; font-weight: 900;">{{ $json.iaasProd.todos.detratores }}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td style="background-color: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 16px 20px;">
+                                                        <span style="color: #0369a1; font-size: 12px; font-weight: bold; text-transform: uppercase;">Atend. IAAS</span>
+                                                        <span style="float: right; color: #0369a1; font-size: 18px; font-weight: 900;">{{ $json.iaasProd.iaas.nps_score }}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                    
+                                    <td width="707"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr><td height="50"></td></tr>
+
+                    <tr>
+                        <td style="text-align: center; padding: 40px; border-top: 1px solid #e2e8f0;">
+                            <img src="https://tcloud.totvs.com.br/plataforma/assets/img/totvs-logo-black.svg" alt="TOTVS" style="height: 16px; opacity: 0.4; margin-bottom: 15px;">
+                            <p style="color: #94a3b8; font-size: 11px; margin: 0; text-transform: uppercase; font-weight: bold; letter-spacing: 2px;">Customer Experience Cloud &copy; 2026</p>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

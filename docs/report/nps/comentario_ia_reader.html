@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="height: 100%; margin: 0; padding: 0;">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: transparent;
+            color: #334155; /* Cor de texto profissional (Slate 700) */
+            line-height: 1.6;
+            font-size: 14px;
+            height: 100%;
+            overflow-y: auto; /* Permite scroll se o comentário for grande */
+        }
+        /* Estilizando as tags que vêm da IA */
+        b, strong { color: #0c1e3f; font-weight: 700; }
+        p { margin-bottom: 12px; }
+        
+        /* Customizando a barra de rolagem para ficar discreta */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div id="conteudo_ia">Carregando análise...</div>
+
+    <script>
+        // Pega o comentário da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        let comentario = urlParams.get('texto');
+
+        if (comentario) {
+            // Decodifica o texto (o QuickSight envia codificado)
+            // e insere como HTML real dentro da div
+            document.getElementById('conteudo_ia').innerHTML = decodeURIComponent(comentario);
+        } else {
+            document.getElementById('conteudo_ia').innerText = "Selecione um filtro para ver a análise da IA.";
+        }
+    </script>
+</body>
+</html>

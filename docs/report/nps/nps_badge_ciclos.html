@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="height: 100%; margin: 0; padding: 0;">
+<head><meta charset="UTF-8"></head>
+<body style="margin: 0; padding: 0; background-color: transparent; height: 100%; width: 100%; overflow: hidden; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+
+    <div style="padding: 5px; box-sizing: border-box; height: 100%; width: 100%; display: flex; align-items: center; justify-content: flex-end;">
+        <div style="background-color: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; backdrop-filter: blur(4px); padding: 8px 20px; min-width: 150px; text-align: center;">
+            <span id="textoCiclo" style="color: #ffffff; font-size: 13px; font-weight: bold; letter-spacing: 0.5px; white-space: nowrap;">
+                CARREGANDO...
+            </span>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        let valorParam = urlParams.get('ciclo');
+
+        const display = document.getElementById('textoCiclo');
+
+        if (!valorParam || valorParam.toLowerCase() === 'all') {
+            display.innerText = "VISÃO GERAL (TODOS)";
+        } else {
+            // O QuickSight envia múltiplos valores separados por vírgula
+            let selecionados = valorParam.split(',');
+
+            if (selecionados.length === 1) {
+                // Se for só um, mostra o nome dele
+                display.innerText = selecionados[0].toUpperCase();
+            } else if (selecionados.length > 1) {
+                // LÓGICA INTELIGENTE: Se todos forem do mesmo ano, mostra "CICLOS DE 2025"
+                // Assume que seu texto é algo como "1º CICLO DE 2025"
+                let anos = selecionados.map(s => s.match(/\d{4}/)).filter(n => n);
+                let anoUnico = [...new Set(anos.map(a => a[0]))];
+
+                if (anoUnico.length === 1) {
+                    display.innerText = "CICLOS DE " + anoUnico[0];
+                } else {
+                    // Se misturar anos, mostra a contagem
+                    display.innerText = selecionados.length + " CICLOS SELECIONADOS";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

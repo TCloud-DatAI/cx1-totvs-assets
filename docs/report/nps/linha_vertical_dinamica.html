@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="height: 100%; margin: 0; padding: 0;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; background-color: transparent; height: 100%; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+
+    <div id="linha" style="width: 1.5px; height: 85%; background-color: #e2e8f0; border-radius: 10px; transition: background-color 0.3s ease;">
+    </div>
+
+    <script>
+        // Função para pegar a cor da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const corParam = urlParams.get('cor');
+        const linha = document.getElementById('linha');
+
+        // Mapeamento de cores (Pode usar os mesmos nomes que combinamos antes)
+        const cores = {
+            'azul': '#2b4b8f',
+            'verde': '#16a34a',
+            'rosa': '#ec4899',
+            'roxo': '#a855f7',
+            'vermelho': '#dc2626',
+            'cinza': '#e2e8f0'
+        };
+
+        // Se o parâmetro existir no link e estiver na lista, troca a cor
+        if (corParam && cores[corParam]) {
+            linha.style.backgroundColor = cores[corParam];
+        }
+    </script>
+</body>
+</html>

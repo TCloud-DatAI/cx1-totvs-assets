@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="height: 100%; margin: 0; padding: 0;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; background-color: transparent; height: 100%; width: 100%; overflow: hidden; font-family: sans-serif;">
+
+    <div style="padding: 8px; box-sizing: border-box; height: 100%; width: 100%;">
+        <div id="meuCard" style="background-color: #ffffff; border-radius: 12px; border: 2px solid #2b4b8f; height: 100%; width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s ease;">
+            &nbsp;
+        </div>
+    </div>
+
+    <script>
+        // Função para pegar a cor da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const corParam = urlParams.get('cor');
+        const card = document.getElementById('meuCard');
+
+        // Mapeamento de cores (Você pode adicionar quantas quiser aqui)
+        const cores = {
+            'azul': '#2b4b8f',
+            'verde': '#16a34a',
+            'rosa': '#ec4899',
+            'roxo': '#a855f7',
+            'vermelho': '#dc2626',
+            'laranja': '#d97706'
+        };
+
+        // Se o parâmetro existir no link e estiver na nossa lista, troca a cor
+        if (corParam && cores[corParam]) {
+            card.style.borderColor = cores[corParam];
+        }
+    </script>
+</body>
+</html>

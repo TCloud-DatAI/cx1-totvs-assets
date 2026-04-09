@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        /* RESET TOTAL: Tira qualquer borda ou respiro do navegador */
+        /* Reset de margens */
         * {
             margin: 0;
             padding: 0;
@@ -14,37 +14,45 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: transparent; /* Garante que o fundo seja invisível */
-        }
-
-        /* O container ocupa 100% da largura e altura que você der no QuickSight */
-        .wrapper {
-            width: 100vw;
-            height: 100vh;
+            background-color: transparent; 
             display: flex;
-            align-items: center; /* Centraliza a linha verticalmente */
+            align-items: center;
             justify-content: center;
         }
 
-        #linha {
-            width: 100%;       /* Ocupa toda a largura disponível */
-            height: 4px;       /* Ajuste aqui a grossura da linha rosa */
-            background-color: #ec4899; /* Cor rosa padrão */
-            border-radius: 0;  /* REMOVE AS BORDAS ARREDONDADAS */
-            transition: background-color 0.3s ease;
+        /* O Bloco Branco (Card) sem sombra */
+        .card {
+            width: 100%; /* Ocupa tudo para facilitar a sobreposição */
+            height: 100%;
+            background-color: white;
+            border-radius: 12px; /* Arredondamento conforme seu print */
+            position: relative;
+            overflow: hidden; 
+            border: 1.5px solid #e2e8f0; /* Borda sólida fina em volta de tudo */
+        }
+
+        /* A Faixa Colorida no Topo */
+        #topo-colorido {
+            width: 100%;
+            height: 10px; /* Grossura da faixa */
+            background-color: #ec4899; /* Cor padrão */
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05); /* Divisão sutil */
         }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <div id="linha"></div>
+    <div class="card">
+        <div id="topo-colorido"></div>
     </div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const corParam = urlParams.get('cor');
-        const linha = document.getElementById('linha');
+        const topo = document.getElementById('topo-colorido');
 
         const cores = {
             'azul': '#2b4b8f',
@@ -56,7 +64,7 @@
         };
 
         if (corParam && cores[corParam]) {
-            linha.style.backgroundColor = cores[corParam];
+            topo.style.backgroundColor = cores[corParam];
         }
     </script>
 </body>

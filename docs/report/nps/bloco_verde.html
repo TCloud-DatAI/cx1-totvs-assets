@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-<body style="margin: 0; padding: 0; background-color: transparent;">
-    <div style="padding: 10px; box-sizing: border-box;">
-        <div style="background-color: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; border-top: 8px solid #16a34a; min-height: 150px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-            &nbsp;
+<html lang="pt-BR" style="height: 100%; width: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Remove qualquer margem ou barra de rolagem do navegador */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        /* O Card agora ocupa 100% da largura e altura que você definir no QuickSight */
+        .card-verde {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border-radius: 20px;
+            border: 1.5px solid #e2e8f0;
+            border-top: 8px solid #16a34a; /* Faixa verde fixa no topo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-verde">
         </div>
-    </div>
+
 </body>
 </html>

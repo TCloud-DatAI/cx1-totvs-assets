@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+
+    <div id="bloco-nps-dinamico" style="width: 100%; min-height: 350px; background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+        </div>
+
+    <script>
+        // Função que você vai chamar quando o filtro mudar
+        function carregarGrafico(dados) {
+            
+            // Lógica para decidir o que aparece no texto (Categorias)
+            let categorias = ['NPS STD', 'NPS PRIME'];
+            let serieDados = [dados.std, dados.prime];
+
+            // Se o seu filtro enviou dados de IaaS, adicionamos a 3ª linha
+            if (dados.iaas !== null && dados.iaas !== undefined) {
+                categorias.push('NPS IaaS');
+                serieDados.push(dados.iaas);
+            }
+
+            // Configuração do Highcharts
+            Highcharts.chart('bloco-nps-dinamico', {
+                chart: { type: 'bar' },
+                title: { text: 'Performance NPS' },
+                xAxis: { categories: categorias },
+                yAxis: { title: { text: 'Pontuação' }, min: 0 },
+                series: [{
+                    name: 'Score',
+                    data: serieDados,
+                    color: '#001f3f' // Cor azul do seu dashboard
+                }]
+            });
+        }
+
+        // --- TESTE MANUAL ---
+        // Assim que a página abrir, ele carrega com IaaS (Ciclo 2 - 2026)
+        carregarGrafico({ std: 58, prime: 52, iaas: 17 });
+    </script>
+
+</body>
+</html>

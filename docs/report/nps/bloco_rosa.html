@@ -1,11 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-<body style="margin: 0; padding: 0; background-color: transparent;">
-    <div style="padding: 10px; box-sizing: border-box;">
-        <div style="background-color: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; border-top: 8px solid #ec4899; min-height: 150px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-            &nbsp;
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* RESET TOTAL: Tira qualquer borda ou respiro do navegador */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: transparent; /* Garante que o fundo seja invisível */
+        }
+
+        /* O container ocupa 100% da largura e altura que você der no QuickSight */
+        .wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center; /* Centraliza a linha verticalmente */
+            justify-content: center;
+        }
+
+        #linha {
+            width: 100%;       /* Ocupa toda a largura disponível */
+            height: 4px;       /* Ajuste aqui a grossura da linha rosa */
+            background-color: #ec4899; /* Cor rosa padrão */
+            border-radius: 0;  /* REMOVE AS BORDAS ARREDONDADAS */
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="linha"></div>
     </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const corParam = urlParams.get('cor');
+        const linha = document.getElementById('linha');
+
+        const cores = {
+            'azul': '#2b4b8f',
+            'verde': '#16a34a',
+            'rosa': '#ec4899',
+            'roxo': '#a855f7',
+            'vermelho': '#dc2626',
+            'cinza': '#e2e8f0'
+        };
+
+        if (corParam && cores[corParam]) {
+            linha.style.backgroundColor = cores[corParam];
+        }
+    </script>
 </body>
 </html>

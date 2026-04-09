@@ -3,44 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 10px; background: white; }
+        #container-kpi { width: 100%; min-height: 250px; }
+    </style>
 </head>
 <body>
 
-    <div id="bloco-nps-dinamico" style="width: 100%; min-height: 350px; background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
-        </div>
+    <div id="container-kpi"></div>
 
     <script>
-        // Função que você vai chamar quando o filtro mudar
-        function carregarGrafico(dados) {
-            
-            // Lógica para decidir o que aparece no texto (Categorias)
-            let categorias = ['NPS STD', 'NPS PRIME'];
-            let serieDados = [dados.std, dados.prime];
+        function renderizar() {
+            const params = new URLSearchParams(window.location.search);
+            const getV = (p) => params.get(p) || "0";
 
-            // Se o seu filtro enviou dados de IaaS, adicionamos a 3ª linha
-            if (dados.iaas !== null && dados.iaas !== undefined) {
-                categorias.push('NPS IaaS');
-                serieDados.push(dados.iaas);
+            // Mapeamento de todos os dados dinâmicos
+            const dados = {
+                std:   { n: 'NPS STD',   s: getV('s_std'), p: getV('p_std'), ne: getV('n_std'), d: getV('d_std') },
+                prime: { n: 'NPS PRIME', s: getV('s_pri'), p: getV('p_pri'), ne: getV('n_pri'), d: getV('d_pri') },
+                iaas:  { n: 'NPS IaaS',  s: getV('s_iaas'),p: getV('p_iaas'),ne: getV('n_iaas'),d: getV('d_iaas') }
+            };
+
+            // Lógica para esconder IaaS se o score for 0 ou nulo
+            let linhas = [dados.std, dados.prime];
+            if (dados.iaas.s !== "0" && dados.iaas.s !== "null" && dados.iaas.s !== "") {
+                linhas.push(dados.iaas);
             }
 
-            // Configuração do Highcharts
-            Highcharts.chart('bloco-nps-dinamico', {
-                chart: { type: 'bar' },
-                title: { text: 'Performance NPS' },
-                xAxis: { categories: categorias },
-                yAxis: { title: { text: 'Pontuação' }, min: 0 },
-                series: [{
-                    name: 'Score',
-                    data: serieDados,
-                    color: '#001f3f' // Cor azul do seu dashboard
-                }]
+            Highcharts.chart('container-kpi', {
+                chart: { type: 'bar', backgroundColor: 'transparent' },
+                title: { text: null },
+                xAxis: {
+                    categories: linhas.map(l => l.n),
+                    lineWidth: 0,
+                    labels: { style: { fontSize: '14px', fontWeight: 'bold', color: '#001f3f' } }
+                },
+                yAxis: { visible: false },
+                legend: { enabled: false },
+                credits: { enabled: false },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            useHTML: true,
+                            align: 'left',
+                            formatter: function() {
+                                const info = linhas[this.x];
+                                return `
+                                    <div style="display: flex; width: 400px; justify-content: space-between; align-items: center; margin-left: 20px;">
+                                        <span style="font-size: 28px; font-weight: bold; color: #001f3f; width: 60px; text-align: center;">${info.s}</span>
+                                        <span style="font-size: 20px; font-weight: bold; color: #28a745; width: 60px; text-align: center;">${info.p}</span>
+                                        <span style="font-size: 20px; font-weight: bold; color: #ff8c00; width: 60px; text-align: center;">${info.ne}</span>
+                                        <span style="font-size: 20px; font-weight: bold; color: #dc3545; width: 60px; text-align: center;">${info.d}</span>
+                                    </div>
+                                `;
+                            }
+                        }
+                    }
+                },
+                series: [{ color: 'rgba(0,0,0,0)', data: linhas.map(l => 1) }]
             });
         }
-
-        // --- TESTE MANUAL ---
-        // Assim que a página abrir, ele carrega com IaaS (Ciclo 2 - 2026)
-        carregarGrafico({ std: 58, prime: 52, iaas: 17 });
+        renderizar();
     </script>
-
 </body>
 </html>

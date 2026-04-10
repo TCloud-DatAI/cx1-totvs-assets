@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt-BR" style="height: 100%; width: 100%;">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Remove qualquer margem ou barra de rolagem do navegador */
         * {
             margin: 0;
             padding: 0;
@@ -12,30 +10,57 @@
         }
 
         html, body {
-            height: 100%;
             width: 100%;
+            height: 100%;
             overflow: hidden;
             background-color: transparent;
-        }
-
-        /* O Card agora ocupa 100% do tamanho do visual no QuickSight */
-        .card-roxo {
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            border-radius: 20px;
-            border: 1.5px solid #e2e8f0;
-            border-top: 8px solid #a855f7; /* A faixa roxa fixa no topo */
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border-radius: 20px; /* Arredondamento conforme o roxo */
+            position: relative;
+            overflow: hidden; 
+            /* Borda padrão cinza, será alterada pelo script se necessário */
+            border: 1.5px solid #e2e8f0; 
+            /* Faixa do topo via border-top para ficar igual ao seu modelo roxo */
+            border-top: 8px solid #a855f7; 
+            transition: border-color 0.3s ease;
         }
     </style>
 </head>
 <body>
 
-    <div class="card-roxo">
-        </div>
+    <div class="card" id="card-principal"></div>
 
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const corParam = urlParams.get('cor');
+        const card = document.getElementById('card-principal');
+
+        // Mapa de cores (adicionei o azul da TOTVS e outros)
+        const cores = {
+            'azul': '#2b4b8f',
+            'verde': '#16a34a',
+            'rosa': '#ec4899',
+            'roxo': '#a855f7',
+            'vermelho': '#dc2626',
+            'cinza': '#94a3b8'
+        };
+
+        if (corParam && cores[corParam]) {
+            // Muda a cor da faixa do topo
+            card.style.borderTopColor = cores[corParam];
+            
+            // OPCIONAL: Se quiser que a borda fina lateral também mude para a cor:
+            // card.style.borderColor = cores[corParam]; 
+            // Se quiser manter a borda lateral cinza, deixe a linha acima comentada.
+        }
+    </script>
 </body>
 </html>

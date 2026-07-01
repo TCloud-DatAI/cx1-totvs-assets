@@ -2,39 +2,74 @@
 <html lang="pt-BR" style="margin: 0; padding: 0; height: 100%; width: 100%; background: transparent;">
 <head>
     <meta charset="UTF-8">
-    <title>NPS Report</title>
+    <title>Template</title>
 </head>
 <body style="margin: 0; padding: 0; height: 100%; width: 100%; background: transparent; display: flex; align-items: center; font-family: sans-serif;">
 
-    <div style="
+    <div id="card-container" style="
         background-color: #0c1e3f; 
         width: 100%; 
         height: 100%; 
         display: flex; 
         align-items: center; 
         padding-left: 30px; 
+        padding-right: 30px;
         gap: 15px; 
         border-radius: 16px; 
         box-sizing: border-box;
         overflow: hidden;">
         
-        <img src="https://navega.cloudtotvs.com.br/uxlib/img/login/img/totvs-logo-white.svg" alt="TOTVS" style="height: 24px;">
+        <img id="logo" src="https://navega.cloudtotvs.com.br/uxlib/img/login/img/totvs-logo-white.svg" alt="TOTVS" style="height: 24px;">
         
         <span id="dynamic-text" style="color: #ffffff; font-size: 24px; font-weight: bold; white-space: nowrap;">
-            NPS Cloud Report
+            Template
         </span>
     </div>
 
     <script>
-        // Pega os parâmetros da URL (tudo o que vem depois do '?')
         const urlParams = new URLSearchParams(window.location.search);
         
-        // Procura pelo parâmetro chamado 'texto'
-        const customText = urlParams.get('texto');
-        
-        // Se o parâmetro 'texto' existir na URL, substitui o conteúdo do span
-        if (customText) {
-            document.getElementById('dynamic-text').textContent = customText;
+        // Elementos da tela
+        const container = document.getElementById('card-container');
+        const logo = document.getElementById('logo');
+        const textElement = document.getElementById('dynamic-text');
+
+        // --- 1. ALTERAR TEXTO ---
+        const textoParam = urlParams.get('texto');
+        if (textoParam) {
+            textElement.textContent = textoParam; 
+        }
+
+        // --- 2. ALTERAR COR ---
+        const corParam = urlParams.get('cor');
+        const cores = {
+            'azul': '#2b4b8f',
+            'cinza':'#e2e8f0',
+            'verde': '#16a34a',
+            'rosa': '#ec4899',
+            'roxo': '#a855f7',
+            'vermelho': '#dc2626',
+            'laranja': '#d97706'
+        };
+        if (corParam && cores[corParam.toLowerCase()]) {
+            container.style.backgroundColor = cores[corParam.toLowerCase()];
+        }
+
+        // --- 3. MOSTRAR / OCULTAR LOGO ---
+        const logoParam = urlParams.get('logo');
+        if (logoParam === 'nao' || logoParam === 'false' || logoParam === '0') {
+            logo.style.display = 'none';
+        }
+
+        // --- 4. POSIÇÃO DA LOGO ---
+        // Atualizado para posicao_logo
+        const posicaoParam = urlParams.get('posicao_logo');
+        if (posicaoParam === 'depois') {
+            textElement.style.order = '1';
+            logo.style.order = '2';
+        } else {
+            logo.style.order = '1';
+            textElement.style.order = '2';
         }
     </script>
 </body>

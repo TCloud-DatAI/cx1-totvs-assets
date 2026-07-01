@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="margin: 0; padding: 0; height: 100%; width: 100%; background: transparent;">
+<head>
+    <meta charset="UTF-8">
+    <title>NPS Report</title>
+</head>
+<body style="margin: 0; padding: 0; height: 100%; width: 100%; background: transparent; display: flex; align-items: center; font-family: sans-serif;">
+
+    <div style="
+        background-color: #0c1e3f; 
+        width: 100%; 
+        height: 100%; 
+        display: flex; 
+        align-items: center; 
+        padding-left: 30px; 
+        gap: 15px; 
+        border-radius: 16px; 
+        box-sizing: border-box;
+        overflow: hidden;">
+        
+        <img src="https://navega.cloudtotvs.com.br/uxlib/img/login/img/totvs-logo-white.svg" alt="TOTVS" style="height: 24px;">
+        
+        <span id="dynamic-text" style="color: #ffffff; font-size: 24px; font-weight: bold; white-space: nowrap;">
+            NPS Cloud Report
+        </span>
+    </div>
+
+    <script>
+        // Pega os parâmetros da URL (tudo o que vem depois do '?')
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Procura pelo parâmetro chamado 'texto'
+        const customText = urlParams.get('texto');
+        
+        // Se o parâmetro 'texto' existir na URL, substitui o conteúdo do span
+        if (customText) {
+            document.getElementById('dynamic-text').textContent = customText;
+        }
+    </script>
+</body>
+</html>

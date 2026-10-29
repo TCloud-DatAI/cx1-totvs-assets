@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="height: 100%; margin: 0; padding: 0; background: transparent !important;">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { 
+            height: 100%; 
+            width: 100%; 
+            background: transparent !important; 
+            overflow: hidden;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        .container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center; /* Centraliza verticalmente */
+            justify-content: center; /* Centraliza horizontalmente */
+            background: transparent !important;
+        }
+        #textoCiclo {
+            color: #ffffff;
+            font-size: 15px; /* Aumentei um pouco para dar destaque */
+            font-weight: bold;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            text-transform: uppercase;
+            /* Sombra leve para garantir leitura sobre qualquer azul */
+            text-shadow: 0px 1px 3px rgba(0,0,0,0.3); 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span id="textoCiclo">CARREGANDO...</span>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        let valorParam = urlParams.get('ciclo');
+        const display = document.getElementById('textoCiclo');
+
+        if (!valorParam || valorParam.toLowerCase().includes('all')) {
+            display.innerText = "VISÃO GERAL";
+        } else {
+            let selecionados = valorParam.split(',');
+            if (selecionados.length === 1) {
+                display.innerText = selecionados[0].toUpperCase();
+            } else {
+                let anos = selecionados.map(s => s.match(/\d{4}/)).filter(n => n);
+                let anoUnico = [...new Set(anos.map(a => a[0]))];
+                if (anoUnico.length === 1) {
+                    display.innerText = "CICLOS DE " + anoUnico[0];
+                } else {
+                    display.innerText = selecionados.length + " CICLOS";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Mapeamento Técnico - Health Score</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 20px 10px 40px 10px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Isolado com Espaçamento Premium */
+        .header-strip {
+            background-color: #0c1e3f;
+            background-image: linear-gradient(135deg, #0c1e3f 0%, #1e3a8a 100%);
+            padding: 30px 45px; /* Aumentado o respiro das bordas */
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(12, 30, 63, 0.1);
+        }
+
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .header-table td {
+            padding: 0;
+            border: none;
+            background: none !important;
+        }
+
+        .header-title {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 25px; /* Espaço elegante e maior após o logo */
+            vertical-align: middle;
+        }
+
+        .header-date {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            font-weight: normal;
+            margin-left: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            padding-left: 20px;
+        }
+
+        /* Quadro Único de Conteúdo Integrado */
+        .content-body {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            border: 1px solid #e2e8f0;
+            padding: 40px;
+            margin-top: 25px;
+        }
+
+        h2 {
+            color: #0c1e3f;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: #1e3a8a;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p, li, div, td {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #475569;
+        }
+
+        p {
+            margin: 0 0 15px 0;
+        }
+
+        /* Tabelas Corporativas Analíticas - Compactadas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 25px 0;
+        }
+
+        th {
+            background-color: #0c1e3f;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        td {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+
+        .formula-display {
+            background-color: #f8fafc;
+            border-left: 4px solid #1e3a8a;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 13px;
+            font-weight: bold;
+            color: #0f172a;
+            margin: 15px 0;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+
+        .clarification-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffb300;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            color: #5d4037;
+        }
+
+        .info-note {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+            padding: 15px;
+            font-size: 13px;
+            color: #1b5e20;
+            border-radius: 4px;
+            margin-top: 25px;
+        }
+
+        .example-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Badges Pastéis do Dashboard */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-weight: bold;
+            font-size: 11px;
+            color: #ffffff;
+            border-radius: 6px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.5px;
+            width: 90px;
+        }
+        .bg-excelente { background-color: #68C657; } 
+        .bg-bom { background-color: #F3C464; }       
+        .bg-medio { background-color: #6197E2; }     
+        .bg-ruim { background-color: #DC5151; }      
+        .bg-critico { background-color: #b91c1c; }   
+
+        /* Linha Estética do Rodapé */
+        .footer-strip {
+            background-color: #0c1e3f;
+            background-image: linear-gradient(135deg, #0c1e3f 0%, #1e3a8a 100%);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(12, 30, 63, 0.05);
+            margin-top: 25px;
+            height: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    
+    <div class="header-strip">
+        <table class="header-table">
+            <tr>
+                <td align="left">
+                    <img src="https://navega.cloudtotvs.com.br/uxlib/img/login/img/totvs-logo-white.svg" alt="TOTVS" style="height: 22px; display: inline-block; vertical-align: middle;">
+                    <span class="header-title">Documentação Health Score</span>
+                    <span class="header-date">Atualizado em: <span id="current-date-sync">--/--/----</span></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="content-body">
+        <p>Este documento descreve as regras exatas, pesos de ponderação e critérios de pontuação configurados no sistema para o cálculo de integridade da saúde dos nossos clientes de forma abrangente.</p>
+
+        <h2>1. Distribuição de Pesos e Pilares do Algoritmo</h2>
+        <p>O cálculo unifica o atrito técnico gerado nos ambientes operacionais com os canais de percepção e escuta ativa de relacionamento:</p>
+        
+        <div class="formula-display">health_score_final = 
+  (
+    (score_engajamento_delivery * 0.35) + 
+    ((score_friccao_suporte * 0.70 + COALESCE(score_ouvidoria, 100) * 0.30) * 0.25) + 
+    ((COALESCE(score_incidentes, 100) * 0.60 + COALESCE(score_sucesso_acoes, 100) * 0.40) * 0.15)
+  ) * 1.0 
+  + 
+  ((COALESCE(score_nps, 50) * 0.60 + COALESCE(score_csat, 50) * 0.40) * 0.25)</div>
+
+        <div class="clarification-box">
+            <strong>🚨 AVISO DE INTERPRETAÇÃO DO PAINEL:</strong> As faixas de corte abaixo indicam a integridade calculada pelo Health Score e não a nota isolada do NPS. Uma conta pode possuir uma nota de NPS considerada alta, mas constar com Status Operacional "Ruim" caso apresente alto volume de falhas críticas ou quebra recorrente de prazos no mesmo período.
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">Faixa do Health Score</th>
+                    <th width="20%">Status Operacional</th>
+                    <th width="50%">Significado e Comportamento no Negócio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pontuação &ge; 90.00</td>
+                    <td><span class="badge bg-excelente">Excelente</span></td>
+                    <td>Cliente promotor com ecossistema estável e alto volume de engajamento técnico.</td>
+                </tr>
+                <tr>
+                    <td>Pontuação &ge; 75.00 e &lt; 90.00</td>
+                    <td><span class="badge bg-bom">Bom</span></td>
+                    <td>Cliente saudável com baixo nível de fricção e atendimento dentro das metas.</td>
+                </tr>
+                <tr>
+                    <td>Pontuação &ge; 50.00 e &lt; 75.00</td>
+                    <td><span class="badge bg-medio">Médio</span></td>
+                    <td>Cliente em faixa de atenção com necessidade de acompanhamento tático.</td>
+                </tr>
+                <tr>
+                    <td>Pontuação &ge; 25.00 e &lt; 50.00</td>
+                    <td><span class="badge bg-ruim">Ruim</span></td>
+                    <td>Cliente em zona de risco operacional com alta probabilidade de cancelamento.</td>
+                </tr>
+                <tr>
+                    <td>Pontuação &lt; 25.00</td>
+                    <td><span class="badge bg-critico">Crítico</span></td>
+                    <td>Instabilidade grave exigindo ação emergencial e plano de contenção.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. Detalhamento de Critérios e Metas por Pilar</h2>
+
+        <h3>Estabilidade de Infraestrutura e Incidentes (15% da nota operacional)</h3>
+        <p>Mede a severidade de indisponibilidades separando o impacto crítico de bases produtivas de ambientes de testes de homologação.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">Atributo Monitorado</th>
+                    <th width="25%">Condição Pré-Configurada</th>
+                    <th width="15%">Meta Aceitável</th>
+                    <th width="30%">Critério de Pontuação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Incidentes Críticos</strong></td>
+                    <td>Maior ou igual que 5 incidentes (Janela de 30 dias)</td>
+                    <td>&lt; 5 tickets</td>
+                    <td><strong>Zera o pilar técnico por completo (Score = 0)</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Base Produtiva</strong></td>
+                    <td>Por ocorrência registrada em ambiente ativo</td>
+                    <td>0 tickets</td>
+                    <td>Subtrai 20 pontos por ticket registrado no mês</td>
+                </tr>
+                <tr>
+                    <td><strong>Base Não Produtiva</strong></td>
+                    <td>Por ocorrência registrada em homologação ou testes</td>
+                    <td>0 tickets</td>
+                    <td>Subtrai 5 pontos por ticket registrado no mês</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Eficiência de Automações (Sucesso de Ações)</h3>
+        <p>Mede a estabilidade e a taxa de sucesso das automações executadas para o ambiente no mês atual.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">Atributo Monitorado</th>
+                    <th width="25%">Condição Pré-Configurada</th>
+                    <th width="15%">Meta Aceitável</th>
+                    <th width="30%">Critério de Pontuação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Taxa de Conclusão</strong></td>
+                    <td>Divisão contínua das rotinas completadas sem erros pelo total de comandos executados no mês</td>
+                    <td>100% de Sucesso</td>
+                    <td>Cálculo contínuo linear. Travado no mínimo em 10 para evitar penalidades excessivas por falhas isoladas. Se não houver histórico de ações no mês, assume 100.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Fricção de Suporte e Prazos (SLAs - 25% da nota operacional)</h3>
+        <p>Acompanha o volume de chamados abertos e a integridade de cumprimento dos prazos contratuais de resposta.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">Atributo Monitorado</th>
+                    <th width="25%">Condição Pré-Configurada</th>
+                    <th width="15%">Meta Aceitável</th>
+                    <th width="30%">Score Travado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Volumetria Crítica / Reincidência</td>
+                    <td>Total de incidentes abertos nos últimos 30 ou 90 dias</td>
+                    <td>Incidentes 30d &le; 2<br>Incidentes 90d &le; 5</td>
+                    <td>Incidentes 30d &gt; 2 OU 90d &gt; 15 &rarr; <strong>Score = 10</strong><br>Incidentes 90d &gt; 10 &rarr; <strong>Score = 30</strong><br>Incidentes 90d &gt; 5 &rarr; <strong>Score = 60</strong></td>
+                </tr>
+                <tr>
+                    <td>Contratos de Atendimento PRIME</td>
+                    <td>Qualquer ocorrência ou estouro de prazo em conta Prime</td>
+                    <td>0 falhas</td>
+                    <td>Qualquer incidente produtivo &rarr; <strong>Score = 20</strong><br>SLA Cumprido &lt; 85% &rarr; <strong>Score = 30</strong></td>
+                </tr>
+                <tr>
+                    <td>Degradação Geral de Atendimento (SLA)</td>
+                    <td>Atraso de prazos resolvidos ou acúmulo de chamados de dúvida</td>
+                    <td>SLA &ge; 85%<br>Dúvidas &lt; 3</td>
+                    <td>SLA &lt; 70% OU Dúvidas &ge; 5 &rarr; <strong>Score = 40</strong><br>SLA &lt; 85% OU Dúvidas &ge; 3 &rarr; <strong>Score = 60</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Escalonamentos Críticos (Ouvidoria)</h3>
+        <p>Monitora atritos de alta severidade onde o cliente acionou instâncias de Ouvidoria por insatisfação crônica.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">Atributo Monitorado</th>
+                    <th width="25%">Condição Pré-Configurada</th>
+                    <th width="15%">Meta Aceitável</th>
+                    <th width="30%">Critério de Pontuação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tickets de Ouvidoria (30 dias)</strong></td>
+                    <td>Qualquer chamado registrado na instância de ouvidoria no mês atual</td>
+                    <td>0 tickets</td>
+                    <td>Subtrai 50 pontos por chamado. <strong>A presença de 2 ou mais chamados zera o pilar por completo (Score = 0).</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Adoção Técnica e Projetos (Engajamento e Delivery - 35% da nota operacional)</h3>
+        <p>Acompanha a atividade do cliente na nuvem, variação mensal de uso e atrasos de implantações mapeados via Jira.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">Atributo Monitorado</th>
+                    <th width="25%">Condição Pré-Configurada</th>
+                    <th width="15%">Meta Aceitável</th>
+                    <th width="30%">Score Atribuído</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Abandono de Plataforma</strong></td>
+                    <td>Infraestrutura cloud inativa ou volume de ações zerado</td>
+                    <td>Infraestrutura Ativa</td>
+                    <td><strong>Score = 20</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Queda de Utilização da Nuvem</strong></td>
+                    <td>Variação de comandos executados comparada ao mês anterior</td>
+                    <td>Evolução estável</td>
+                    <td>Uso caia &le; -75% &rarr; <strong>Score = 20</strong><br>Uso caia &le; -50% &rarr; <strong>Score = 40</strong><br>Uso caia &le; -25% &rarr; <strong>Score = 60</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Gargalos de Delivery</strong></td>
+                    <td>Presença de projetos Cloud atrasados ou cartões parados</td>
+                    <td>0 gargalos</td>
+                    <td>Projetos atrasados OU cards com gargalo &rarr; <strong>Score = 30</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Risco de Churn Alerta CS</strong></td>
+                    <td>Preenchimento manual de risco na carteira</td>
+                    <td>Risco Baixo</td>
+                    <td>Risco ALTO / HIGH &rarr; <strong>Score = 10</strong><br>Risco MÉDIO / MEDIUM &rarr; <strong>Score = 50</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Voz do Cliente e Relacionamento (Sentimento - 25% da nota final)</h3>
+        <p>Converte pesquisas qualitativas em blocos numéricos para composição e trata dados nulos estimando valores baseados no faturamento.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">Canal de Escuta</th>
+                    <th width="25%">Gatilho da Nota Real</th>
+                    <th width="45%">Inércia para Dados Ausentes (CSAT Nulo)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Pesquisa NPS</strong></td>
+                    <td>Nota &ge; 9 &rarr; <strong>Score = 100</strong><br>Nota &ge; 7 &rarr; <strong>Score = 50</strong><br>Nota &lt; 7 &rarr; <strong>Score = 0</strong></td>
+                    <td>Não possui inércia. Resposta nula assume valor 0</td>
+                </tr>
+                <tr>
+                    <td><strong>Pesquisa CSAT</strong></td>
+                    <td>Média &ge; 8 &rarr; <strong>Score = 100</strong><br>Média &ge; 6 &rarr; <strong>Score = 50</strong><br>Média &lt; 6 &rarr; <strong>Score = 0</strong></td>
+                    <td>Infeferência baseada no porte da conta corporativa (Curva ABC):<br>• Cliente Curva A &rarr; <strong>Score = 75.0</strong><br>• Cliente Curva B &rarr; <strong>Score = 60.0</strong><br>• Cliente Curva C &rarr; <strong>Score = 45.0</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Exemplos Práticos de Consolidação (Validação do Cálculo)</h2>
+        <p>Para entender o comportamento do algoritmo na prática, veja como diferentes cenários operacionais e de relacionamento impactam a classificação final do cliente no painel:</p>
+
+        <div class="example-card">
+            <strong>🟢 Exemplo 1: Cenário EXCELENTE</strong><br>
+            <ul>
+                <li><strong>Dados de Entrada:</strong> 0 Incidentes, 25 Ações executadas com 100% de sucesso, 0 Ouvidorias, SLA de Suporte em 95%, NPS informado igual a 10.</li>
+                <li><strong>Comportamento dos Scores:</strong> Todos os sub-pilares atingem nota máxima (100).</li>
+                <li><strong>Resultado no Painel:</strong> O Health Score atinge <strong>100 pontos</strong> estáveis. O cliente permanece mapeado na faixa de expansão e fidelidade técnica.</li>
+            </ul>
+        </div>
+
+        <div class="example-card">
+            <strong>🟡 Exemplo 2: Cenário MÉDIO</strong><br>
+            <ul>
+                <li><strong>Dados de Entrada:</strong> 1 Incidente em Produção (-20 pontos), 3 Ações executadas com sucesso, 0 Ouvidorias, SLA geral de atendimento degradado em 82% (Score trava em 60 por regra de SLA) e sentimento mediano (NPS 7, CSAT nulo herdando 60 pela Curva B).</li>
+                <li><strong>Comportamento dos Scores:</strong> O pilar de incidentes cai para 80. O pilar de suporte cai para 60 devido ao atraso de chamados.</li>
+                <li><strong>Resultado no Painel:</strong> O Health consolidado flutua na casa dos <strong>65 a 71 pontos</strong>. O cliente entra automaticamente em atenção tática, mas sem risco iminente de quebra de contrato.</li>
+            </ul>
+        </div>
+
+        <div class="example-card">
+            <strong>🔴 Exemplo 3: Cenário CRÍTICO</strong><br>
+            <ul>
+                <li><strong>Dados de Entrada:</strong> 5 Incidentes Críticos em Produção, 10 Ações com sucesso, 1 Chamado de Ouvidoria (-50 pontos), NPS Detrator (Nota 5).</li>
+                <li><strong>Comportamento dos Scores:</strong> O gatilho de 5 incidentes críticos <strong>zera automaticamente</strong> o pilar de infraestrutura (Score = 0). A Ouvidoria penaliza severamente o pilar de escalonamento.</li>
+                <li><strong>Resultado no Painel:</strong> Mesmo com ações concluídas com sucesso, o peso avassalador das falhas técnicas derruba a nota final para <strong>abaixo de 40 pontos</strong>, classificando a conta como Detratora com alto risco de Churn.</li>
+            </ul>
+        </div>
+
+        <h2>4. Modelo de Predição Matemática: Por que usamos a Curva Sigmoide?</h2>
+        <p>Após a consolidação da nota ponderada do Health Score (que varia de 0 a 100), o sistema submete o resultado a uma <strong>Função Logística Sigmoide</strong> para calcular a probabilidade real de cancelamento da conta (Churn Risk). A equação matemática é estruturada da seguinte forma:</p>
+
+        <div class="formula-display">P(Churn) = 1 / (1 + e^(-k * (x - x0)))
+
+Onde:
+  • x  = Nota final consolidada do Health Score (0 a 100)
+  • x0 = Ponto de inflexão crítica (definido historicamente em 50 pontos)
+  • k  = Fator de inclinação da curva de risco (calibração logística)</div>
+
+        <h3>Por que essa abordagem matemática é necessária no negócio?</h3>
+        <p>Em sistemas corporativos complexos, a perda de clientes não se comporta de forma linear simples. Uma queda de nota de 95 para 85 indica apenas oscilações normais de atendimento, sem alteração drástica no risco de perda. No entanto, quando a nota rompe a barreira crítica dos 50 pontos, a degradação da experiência acelera exponencialmente.</p>
+        <p>A curva sigmoide modela perfeitamente essa dinâmica de mercado: ela mantém o risco de Churn estável e plano nas faixas mais altas, exibe uma rampa íngreme de aceleração na zona de perigo (faixa Média/Ruim) e satura próximo a 100% quando o cliente atinge níveis críticos de insatisfação, fornecendo previsibilidade real para os times de Customer Success.</p>
+
+        <div class="info-note">
+            <strong>Entendimento de Amostragem Temporal:</strong> A janela de 30 dias é adotada para medir o risco da operação atual por conter variações de curtíssimo prazo. Os indicadores de 90 dias atuam mapeando o desgaste histórico acumulado e a reincidência de problemas técnicos no cliente.
+        </div>
+        
+        <p style="font-size: 12px; color: #64748b; margin: 25px 0 0 0; line-height: 1.5;"><strong>Nota de Governança de Dados:</strong> Este algoritmo realiza a consolidação diária agregando dados de fontes transacionais distintas: Qualtrics, TCloud, Zendesk, Jira e o ecossistema do Empodera. Os critérios e pesos de cálculo descritos neste manual são parametrizáveis e podem ser calibrados e expandidos dinamicamente de acordo com a adição de novas bases operacionais e o comportamento histórico das contas.</p>
+    </div>
+
+    <div class="footer-strip"></div>
+</div>
+
+<script>
+    const dataAtual = new Date();
+    const dia = String(dataAtual.getDate()).padStart(2, '0');
+    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    const ano = dataAtual.getFullYear();
+    document.getElementById("current-date-sync").innerText = dia + '/' + mes + '/' + ano;
+</script>
+
+</body>
+</html>

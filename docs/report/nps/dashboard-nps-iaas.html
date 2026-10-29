@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background: #fff; overflow: hidden; }
+        #container-kpi { width: 100%; height: 280px; }
+    </style>
+</head>
+<body>
+    <div id="container-kpi"></div>
+    <script>
+        function render() {
+            const params = new URLSearchParams(window.location.search);
+            
+            // Função que limpa o lixo do QuickSight (se vier a tag em vez do número)
+            const clean = (val) => {
+                let v = params.get(val);
+                if (!v || v.includes('<<$') || v === 'null') return "0";
+                return v;
+            };
+
+            const dados = {
+                std:   { n: 'NPS STD',   s: clean('s_std'), p: clean('p_std'), ne: clean('n_std'), d: clean('d_std') },
+                prime: { n: 'NPS PRIME', s: clean('s_pri'), p: clean('p_pri'), ne: clean('n_pri'), d: clean('d_pri') },
+                iaas:  { n: 'NPS IaaS',  s: clean('s_iaas'),p: clean('p_iaas'),ne: clean('n_iaas'),d: clean('d_iaas') }
+            };
+
+            let linhasAtivas = [dados.std, dados.prime];
+            if (parseFloat(dados.iaas.s) > 0) { linhasAtivas.push(dados.iaas); }
+
+            Highcharts.chart('container-kpi', {
+                chart: { type: 'bar', backgroundColor: 'transparent' },
+                title: { text: null },
+                credits: { enabled: false },
+                xAxis: {
+                    categories: linhasAtivas.map(l => l.n),
+                    lineWidth: 0,
+                    labels: { style: { fontSize: '14px', fontWeight: 'bold', color: '#001f3f' } }
+                },
+                yAxis: { visible: false },
+                legend: { enabled: false },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            useHTML: true,
+                            align: 'left',
+                            formatter: function() {
+                                const info = linhasAtivas[this.x];
+                                return `
+                                    <div style="display: flex; width: 450px; justify-content: space-between; align-items: center; margin-left: 10px;">
+                                        <span style="font-size: 30px; font-weight: bold; color: #001f3f; width: 70px; text-align: center;">${info.s}</span>
+                                        <span style="font-size: 24px; font-weight: bold; color: #28a745; width: 70px; text-align: center;">${info.p}</span>
+                                        <span style="font-size: 24px; font-weight: bold; color: #ff8c00; width: 70px; text-align: center;">${info.ne}</span>
+                                        <span style="font-size: 24px; font-weight: bold; color: #dc3545; width: 70px; text-align: center;">${info.d}</span>
+                                    </div>
+                                `;
+                            }
+                        }
+                    }
+                },
+                series: [{ color: 'rgba(0,0,0,0)', data: linhasAtivas.map(() => 1) }]
+            });
+        }
+        render();
+    </script>
+</body>
+</html>

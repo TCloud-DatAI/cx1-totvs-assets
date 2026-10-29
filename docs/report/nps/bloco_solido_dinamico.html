@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="height: 100%; margin: 0; padding: 0;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; background-color: transparent; height: 100%; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+
+    <div style="padding: 10px; box-sizing: border-box; height: 100%; width: 100%;">
+        
+        <div id="blocoSolido" style="background-color: #f1f5f9; border-radius: 12px; height: 100%; width: 100%; box-sizing: border-box; transition: background-color 0.3s ease; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+            &nbsp; </div>
+
+    </div>
+
+    <script>
+        // Função para pegar a cor da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const corParam = urlParams.get('cor');
+        const bloco = document.getElementById('blocoSolido');
+
+        // Mapeamento de cores (Pode usar os mesmos nomes que combinamos antes)
+        const cores = {
+            'azul': '#2b4b8f',        // Azul suave do badge de ciclo
+            'verde': '#16a34a',       // Verde Datasul
+            'rosa': '#ec4899',        // Rosa RM
+            'roxo': '#a855f7',        // Roxo Protheus
+            'vermelho': '#dc2626',    // Detratores
+            'laranja': '#d97706',     // Neutros
+            'cinza_claro': '#f1f5f9', // Cor de fundo padrão (default)
+            'cinza_medio': '#e2e8f0'  // Cor da linha de separação
+        };
+
+        // Se o parâmetro existir no link e estiver na lista, troca a cor
+        if (corParam && cores[corParam]) {
+            bloco.style.backgroundColor = cores[corParam];
+        }
+    </script>
+</body>
+</html>
